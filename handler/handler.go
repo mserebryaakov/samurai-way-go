@@ -1,10 +1,16 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
+
+	"github.com/mserebryaakov/samurai-way-go/data"
 )
 
-func UsersHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "users")
+func UsersHandler(rw http.ResponseWriter, r *http.Request) {
+	rw.Header().Set("Access-Control-Allow-Origin", "*")
+	d := data.Store
+	err := d.ToJSON(rw)
+	if err != nil {
+		http.Error(rw, "Unable to marshal json", http.StatusInternalServerError)
+	}
 }
