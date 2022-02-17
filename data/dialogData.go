@@ -5,22 +5,18 @@ type messageData struct {
 	Message string `json:"message"`
 }
 
-type message []messageData
-
 type dialogData struct {
 	Id   int    `json:"id"`
 	Name string `json:"name"`
 }
 
-type dialogs []dialogData
-
 type DialogPage struct {
-	MessageData        message `json:"messageData"`
-	CurrentTextMessage string  `json:"currentTextMessage"`
-	DialogData         dialogs `json:"dialogData"`
+	MessageData        []messageData `json:"messageData"`
+	CurrentTextMessage string        `json:"currentTextMesage"`
+	DialogData         []dialogData  `json:"dialogData"`
 }
 
-var Store DialogPage = DialogPage{
+var DialogsStore DialogPage = DialogPage{
 	MessageData: []messageData{
 		{
 			Id:      5,
